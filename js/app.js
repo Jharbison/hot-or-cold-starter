@@ -31,11 +31,19 @@ $(document).ready(function(){
   		event.preventDefault();
   		var guess = $("#userGuess").val();
   		console.log(guess);
-  		var list = '<li>' + guess + '</li>';
-  		$('#guessList').append(list);
+  	
   		$('#userGuess').val('');
-		checkGuess(guess);
-		guessCount();
+  		
+  		if (isNaN(guess) || guess < 1 || guess > 100){
+			$("#feedback").text("Pick a Number Between 1 and 100");
+		} else {
+
+	  		var list = '<li>' + guess + '</li>';
+	  		$('#guessList').append(list);
+  	
+			checkGuess(guess);
+			guessCount();
+		}
 	});
 
 
@@ -43,9 +51,7 @@ $(document).ready(function(){
 		var difference = Math.abs(number - guess);
 		console.log("The difference is " + difference);
 
-		if (isNaN(guess) || guess < 1 || guess > 100){
-			$("#feedback").text("Pick a Number Between 1 and 100");
-		} else if (guess == number){
+		if (guess == number){
 			$("#feedback").text("Correct!");
 		} else if (difference >= 1 && difference <= 10) {
 			$("#feedback").text("Very Hot");
