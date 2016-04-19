@@ -19,8 +19,14 @@ $(document).ready(function(){
   	});
 
 
-	$('#newGame').click(function(){
-		window.location.reload();
+	$('.new').click(function(event){
+		event.preventDefault();
+		newNumber();
+		console.log('The secret number is ' + number);
+		$('#userGuess').val('');
+		$('#guessList').html('');
+		$('#feedback').text('Make Your Guess!');
+		$('#count').text('0')
 	});
 
 	function newNumber() {
